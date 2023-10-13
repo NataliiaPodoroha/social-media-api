@@ -16,7 +16,7 @@ def post_image_file_path(instance, filename):
 
 
 class Post(models.Model):
-    owner = models.ForeignKey(
+    author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts"
     )
     title = models.CharField(max_length=255)
@@ -37,13 +37,13 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField()
     likes = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name="liked_comments"
     )
     created_time = models.DateTimeField(auto_now_add=True)
-    content = models.TextField()
 
     class Meta:
         ordering = ["-created_time"]
