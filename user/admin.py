@@ -26,8 +26,8 @@ class UserAdmin(DjangoUserAdmin):
             },
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
-        (_("Followings"), {"fields": ("followers", "following")}),
-        (_("Profile picture"), {"fields": ("profile_picture",)}),
+        (_("Followings"), {"fields": ("followers", "followings")}),
+        (_("Image"), {"fields": ("image",)}),
     )
     add_fieldsets = (
         (

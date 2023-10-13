@@ -11,8 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
             "password",
             "is_staff",
             "bio",
-            "profile_picture",
-            "following",
+            "image",
+            "followings",
             "followers",
         )
         read_only_fields = ("is_staff",)
@@ -31,3 +31,40 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
 
         return user
+
+
+class UserListSerializer(UserSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["id", "email", "first_name", "last_name", "image"]
+
+
+class UserCreateSerializer(UserSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["id", "email", "password"]
+
+
+class UserDetailSerializer(UserSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = [
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "bio",
+            "image",
+        ]
+
+
+class UserFollowersSerializer(UserSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["followers"]
+
+
+class UserFollowingsSerializer(UserSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["followings"]
