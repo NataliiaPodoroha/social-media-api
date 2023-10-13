@@ -36,7 +36,7 @@ class PostSerializer(serializers.ModelSerializer):
             "title",
             "content",
             "likes",
-            "created_at",
+            "created_time",
             "image",
         ]
 
@@ -63,7 +63,7 @@ class PostListSerializer(PostSerializer):
             "author",
             "title",
             "like_count",
-            "created_at",
+            "created_time",
             "comments",
             "image",
         ]
