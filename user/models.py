@@ -58,10 +58,10 @@ class User(AbstractUser):
     image = models.ImageField(null=True, upload_to=user_image_file_path)
     registration_date = models.DateTimeField(auto_now_add=True)
     followers = models.ManyToManyField(
-        "self", blank=True, related_name="user_followers", null=True, symmetrical=False
+        "self", blank=True, related_name="user_followers", symmetrical=False
     )
     followings = models.ManyToManyField(
-        "self", blank=True, related_name="user_followings", null=True, symmetrical=False
+        "self", blank=True, related_name="user_followings", symmetrical=False
     )
 
     USERNAME_FIELD = "email"
