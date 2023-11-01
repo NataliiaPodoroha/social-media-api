@@ -101,13 +101,13 @@ class FollowUnfollowView(APIView):
         other_user = self.other_user(pk)
 
         if req_type == "follow":
-            current_user.following.add(other_user)
+            current_user.followings.add(other_user)
             other_user.followers.add(current_user)
             return HttpResponseRedirect(
                 reverse("user:user-following", args=[current_user.id])
             )
         elif req_type == "unfollow":
-            current_user.following.remove(other_user)
+            current_user.followings.remove(other_user)
             other_user.followers.remove(current_user)
             return HttpResponseRedirect(
                 reverse("user:user-following", args=[current_user.id])
